@@ -1,0 +1,41 @@
+﻿@model ML.Login
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Login</h1>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.Email, new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            </div>
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.Password, new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.Password, new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-12">
+                <button class="btn btn-success">Login</button>
+            </div>
+
+            <div>
+                <a class="btn btn-success" href="@Url.Action("Register", "Login")">Register</a>
+            </div>
+
+
+        </div>
+    }
+
+</div>
+
+
+

@@ -1,0 +1,70 @@
+﻿@model ML.Empleado
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Empleados</h2>
+
+            <a asp-action="Formulario" class="btn btn-success">Agregar nuevo empleado</a>
+
+            @if (Model.Empleados != null)
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>IdEmpleado</th>
+                            <th>Nombre</th>
+                            <th>FechaNacimiento</th>
+                            <th>RFC</th>
+                            <th>NSS</th>
+                            <th>CURP</th>
+                            <th>FechaIngreso</th>
+                            <th>SalarioBase</th>
+                            <th>NoFaltas</th>
+                            <th>IdDepartamento</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (ML.Empleado empleado in Model.Empleados)
+                        {
+                            <tr>
+                                <td>@empleado.IdEmpleado</td>
+                                <td>@empleado.Nombre @empleado.ApellidoPaterno @empleado.ApellidoMaterno</td>
+                                <td>@empleado.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                                <td>@empleado.RFC</td>
+                                <td>@empleado.NSS</td>
+                                <td>@empleado.CURP</td>
+                                <td>@empleado.FechaIngreso.ToString("dd/MM/yyyy")</td>
+                                <td>@empleado.SalarioBase</td>
+                                <td>@empleado.NoFaltas</td>
+                                <td>@empleado.Departamento.IdDepartamento</td>
+                                <td>
+                                    <a asp-action="Formulario" asp-route-IdEmpleado="@empleado.IdEmpleado" class="btn btn-warning">Editar</a>
+                                </td>
+                                <td>
+                                    <a asp-action="Delete" asp-route-IdEmpleado="@empleado.IdEmpleado" class="btn btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-danger" role="alert">
+                    No se encontraron empleados dentro de la DB
+                </div>
+            }
+                   
+        </div>
+    </div>
+</div>
+
+
+
